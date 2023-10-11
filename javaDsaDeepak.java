@@ -188,3 +188,80 @@
 //Enumeration:is used to traverse legacy collections such as Vector and Hashtable. It supports only forward direction iteration.
 
 
+/*------------------------------------------------------------------------------------------------------------------*/
+// ENUMERATION IN THE JAVA->>>>>
+// this is only used for the only with the legacy class (vector and stack )
+
+// Enumeration cursur can be get by elements() method
+// Enumeration e = v.elements();
+
+// Methods of enumeration cursor are---->
+// hasMoreElements(), nextElements();
+// we can only retriver the elements by the enu in only forward direction
+// this is only used only for read operation ----->
+
+
+// import java.io.*;
+// import java.util.*;
+
+// class javaDsaDeepak {
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		Vector<Integer> v = new Vector<Integer>();
+// 		v.add(12);
+// 		// v.add("deepak"); //cannot be added because of this integer
+// 		// v.add(12.44);
+
+// 		System.out.println(v); // This prints all the elements present inside the vector
+
+// 		Enumeration<Integer> e = v.elements();
+// 		while (e.hasMoreElements()) {
+// 			System.out.println(e.nextElement()); // Corrected method name to nextElement()
+// 		}
+// 	}
+// }
+/*------------------------------------------------------------------------------------------------------------------*/
+// <==========array list========>
+// ArrayList is a class which implements the List interface
+// which includes the constructors and methods
+// Resizble array.. ArrayList is created on the basis of the Global array
+
+// Propertise of the arrayList
+// 1. index based data Structure
+// 2. ArrayList can store the duplicates value
+// 3. ArrayList can store the many no of null values
+// 4. it follows the insertion order
+// 5. ArrayList cna store different data types or heterogeneous data types
+// 6. ArrayList does not follow sorting order
+// 7. ArrayList doesn't follow sorting order
+// 8. ArrayList are non- synchronized
+
+
+// addAll() mehtod is ued to add or append all the elements in the specifired collection to the end of the ArrayList or say collection
+import java.io.*;
+import java.util.*;
+
+class javaDsaDeepak {
+	public static void main(String[] args) throws IOException {
+		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+		ArrayList<Object> v = new ArrayList<Object>(); // this initial constructor capacity is 10
+		ArrayList<Object> v1 = new ArrayList<Object>(6); // this initial constructor capacity is 6
+		// but the size of this 6 capacity constructor is zero
+
+
+		ArrayList<Integer> a = new  ArrayList<Integer>();
+		a.add(10);
+		a.add(20);
+		a.add(30);
+
+		ArrayList<Integer> b = new ArrayList<Integer>(a); // collection c [costructor]
+		System.out.println(a);
+		System.out.println(b);
+		// [10, 20, 30]
+		// [10, 20, 30]
+		System.out.println(a.contains(31));
+	}
+}
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
