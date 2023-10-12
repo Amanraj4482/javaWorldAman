@@ -1449,6 +1449,8 @@ class Emp {
 /*-----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------*/
 
 
 // <-------------------(((((((((( EXCEPTIONAL HANDING )))))))--------------->
@@ -1571,6 +1573,232 @@ catch (ExceptionClassName ref.var.name)
 // }
 
 
+/*------------------------------------------------------------------------------------------------------------------*/
+// lecture 109
+// e.printStackTrace()
+// sout(e),    sout(e.toString())
+// sout(e.getMessage()),  // no exception name , but prints description ,// and neither stack trace
+
+/*------------------------------------------------------------------------------------------------------------------*/
+// import java.io.*;
+// import java.util.*;
+
+// class javaDeepak {
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		try {
+// 			int a = 100, b = 0, c;
+// 			c = a / b;
+// 			System.out.println(c);
+// 		} catch (ArithmeticException ae) {
+// 			// ae.printStackTrace();
+// 			System.out.println(ae);// java.lang.ArithmeticException: / by zero
+
+// 		}
+// 		// java.lang.ArithmeticException: / by zero
+// 		// at javaDeepak.main(javaDeepak.java: 1589)
+
+// 	}
+// }
+/*------------------------------------------------------------------------------------------------------------------*/
+//finally() ------>
+// this is treated as the default word in the switch case cases-->
+
+// import java.io.*;
+// import java.util.*;
+
+// class javaDeepak {
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		try {
+// 			// risky code
+// 			System.out.println(100 / 2);
+// 		} catch (Exception e) {
+// 			// handling code
+// 			System.out.println(e);
+// 		} finally {
+// 			// clean up code
+// 			// the resources which are open in the try block i'll try to close the resources
+// 			System.out.println("There is exception");
+// 		}
+// 	}
+// }
+/*---------------------------------*/
+// read data from the file using the try and catch and finally block
+// we can use multiple catch blocks with one try block but we can only use single finally block with one try block , not mutiple
+// The statements presnt in the finally block executre evven if the try block contains control transfer statements (i.e ump statements ) like return , break or continue
+
+// The possiblities that disturbs the execution of finally block are :
+// Case 1 : Using of the System.exit() methods
+// Case 2 : CAusing a fatal error that causes the process to abortt
+// Case 3 : Due to an exception arising in the finally block
+// Case 4 : The death of a Thread
+
+
+// import java.io.*;
+// import java.util.*;
+
+// class javaDeepak {
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		FileInputStream fis = null;
+// 		try {
+// 			fis = new FileInputStream("D:/c++ code/SUPREME_DSA/error.txt");
+// 		} catch (FileNotFoundException e) {
+// 			System.out.println("File not found");
+// 		} finally {
+// 			// cleanup here
+// 			if (fis != null) {
+// 				//  we can also use the try and catch block in the finally to close the files
+// 				fis.close(); // this throws the Io exception
+// 			}
+// 			System.out.println("File closed");
+// 		}
+// 	}
+// }
+/*------------------------------------------------------------------------------------------------------------------*/
+// WHAT IS DIFFERENCE BETWEEN FINAL FINALLY FINALIZE
+
+// 1. Final is the keyword       		 1.finally is the block           1. Finalize is the method
+// 2. Use with (varible)         		 2. use with the either try 	  2. Method is override for and object
+// 		(method)	  		 or catch blocks		  3. protected void finalize() throws throable
+// 		(class)				 3. finally block is used to         is the method which runs just before the garbage collection
+// 					         close the resourse 		     clean up code ---> close the resource
+//1. final int a = 10; (fixed value)
+
+//2. cannot not be overrided if the
+// method is declared as final
+// class A{
+// final void show(){}
+// }
+// class B extends A{
+// void show(){} //---- this will show the error
+// }
+
+// 3. final class can't be inheried or extends
+
+/*------------------------------------------------------------------------------------------------------------------*/
+//lecture 112 :
+// Various possible combinations of try and catch finally
+// 1. single try , catch , finally can't be possible
+// 2. I can use  the a single with multiple catch(exception 1) catch(exception 2) :: here exception 1 and 2 are not same
+// 3. A single try can include the try and catch in itself but the outer try should have the catch block
+// 4. same goes for the catch block :: statement 3
+// 5. and simple try{} catch(){} finally{} possible
+// 6. or try{} finally{}
+// 7. or try{} finally{ try {}  catch(){} }
+
+/*------------------------------------------------------------------------------------------------------------------*/
+// lecture 113
+// THROW KEYWORD :Throw keyword is used to create an exception object manually ie normally method creates an exception object as exception occurs in that method, but when use throw , programmer
+// is responsible create an exception object.
+
+// if there is error in the main method then jvm passes it to the defalut exception handler
+
+// import java.io.*;
+// import java.util.*;
+
+// class javaDeepak {
+// 	void divide() {
+// 		// exception object is created with in this if this function is not handling the
+// 		// exceptioo it is passed to the main method
+// 		// if the main method is not handling the exception
+// 		// then jvm passess it to the default exception handler
+
+// 		try {
+// 			System.out.println(100 / 0);
+// 		} catch (ArithmeticException e) {
+// 			e.printStackTrace();
+// 		}
+// 	}
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		javaDeepak t = new javaDeepak();
+// 		// i am handling this divide exception in the caller method using the try and catch
+// 		// try {
+// 		// 	t.divide();
+// 		// } catch (ArithmeticException e) {
+// 		// 	// System.out.println(e);
+// 		// 	e.printStackTrace();
+// 		// }
+
+// 		t.divide();
+// 		System.out.println("hello"); // this shows the complete excution of the program
+// 	}
+// }
+/*------------------------------------------------------------------------------------------------------------------*/
+// USING THE THROW ---->
+
+// if the age is below 18 then programmer creates and exception object manyally using throw keyword
+// import java.io.*;
+// import java.util.*;
+
+// class test extends RuntimeException {
+// 	test(String msg) {
+// 		super(msg);
+// 	}
+// }
+// class javaDeepak {
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+
+// 		/*// there is no rolw of the main method in this of throw exception by the user to the jvm
+// 		throw new ArithmeticException();
+// 		// throw keyword is used for the custom exception or user defined exception
+
+// 		// unchecked exception are better to use : class test extends RuntimeException
+// 		// if creating the checked exceptiom then : class test extends Exceptiom*/
+
+// 		int age = 17;
+// 		if (age < 18) {
+// 			throw new test("You are not eligible");
+// 			// class name, desc, stackTrace
+// 			// this passes to the default exception handler by the jvm
+// 		} else System.out.println("Success voting");
+// 	}
+// }
+/*------------------------------------------------------------------------------------------------------------------*/
+// lecture 114 : USE OF THROWS KEYWORD
+// "throws" keyword is used to declare an exception. It gives an information to the caller method that there may occur an exception so it s better for the caller
+// met to provide the exception handling code so that normal flow can be maintained
+// throws keyword is used with the method
+
+//FileInputStream class throws "FileNotFoundException " which is compile time exception or checked exception
+// so we have to handle the exception and for this purpose we have to use either try-catch or throws keyword
+
+// throws keyword is not used in the case of the unchecked exception
+
+// throws keyword never handle the exception it just indicated and give the description of the exception
+
+// import java.io.*;
+// import java.util.*;
+
+// class ReadAndWrite {
+// 	void readfile() throws FileNotFoundException {
+// 		FileInputStream fis = new FileInputStream("D:/c++ code/SUPREME_DSA/error.txt");
+// 	}
+// 	void sameFileName () throws FileNotFoundException {
+// 		FileOutputStream fos = new FileOutputStream("D:/c++ code/javaworld/output.txt");
+// 	}
+// }
+// class javaDeepak {
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		ReadAndWrite rw = new ReadAndWrite ();
+// 		try {
+// 			rw.readfile();
+// 		} catch (FileNotFoundException e) {
+// 			e.printStackTrace();
+// 		}
+// 		System.out.println("Successful Execution");
+// 	}
+// }
+/*------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------*/
+// DIFFERENCE BETWEEN THROW AND THROWS---->
+// Throw -> main method doesn't involve
+// throws -> keywod is used to declare the exception is. it indicates the call method
+// that given exception can occur so we have to handle it either using try catch block or again declare it by using throws keyword
 /*---------------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------------*/
 // <=========== STRING IN JAVA ========>
@@ -2040,7 +2268,11 @@ class Test {
 // 		System.out.println("Mini occ : " + minChar);  // c
 // 	}
 // }
-
+/*------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------*/
 // MULTIPLE TASK -> It increases the performance of the cpu
 // it can be achieved by two types ->1. process based by mutlitasking    2. Thread based multitaking
@@ -2190,109 +2422,3 @@ class Test {
 // 	}
 // }
 
-/*------------------------------------------------------------------------------------------------------------------*/
-
-/*import java.io.*;
-import java.util.*;
-class Stu {
-	int roll;
-	String name;
-
-	Stu(int roll, String name) {
-		this.roll = roll;
-		this.name = name;
-	}
-}
-class javaDeepak {
-	public static void main(String[] args) throws IOException {
-		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
-		List<Stu> array = new ArrayList<Stu>(3);
-
-		array a1 = new Stu();
-		a1.roll = 12;
-		a1.name = "Omkar";
-
-		array a2 = new Stu();
-		a1.roll = 13;
-		a1.name = "nitin";
-
-		array a3 = new Stu();
-		a1.roll = 14;
-		a1.name = "priya";
-
-		array.add(a1);
-		array.add(a2);
-		array.add(a3);
-
-		for (int i = 0; i < array.size() ; i++ ) {
-			System.out.println(array.get(i).name);
-		}
-	}
-}*/
-/*------------------------------------------------------------------------------------------------------------------*/
-// nitin question----->
-// import java.io.*;
-// import java.util.*;
-// class Students {
-// 	public String name;
-// 	public int roll;
-// 	public String contact;
-// }
-// class Main {
-// 	public static void main(String[] args) throws IOException {
-// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
-
-// 		// ArrayList<Students> Array_student = new ArrayList<Students> ();
-
-// 		Students[] stu_array = new Students[3];
-// 		Students s1 = new Students ();
-// 		s1.name = "JOHN";
-// 		s1.roll = 1;
-// 		s1.contact = "70793-54482";
-
-// 		Students s2 = new Students ();
-// 		s2.name = "AMAN";
-// 		s2.roll = 2;
-// 		s2.contact = "95077-56090";
-
-// 		Students s3 = new Students ();
-// 		s3.name = "OMKAR";
-// 		s3.roll = 1;
-// 		s3.contact = "12345-67890";
-
-// 		/*Array_student.add(s1);
-// 		Array_student.add(s2);
-// 		Array_student.add(s3);*/
-
-// 		stu_array[0] = s1;
-// 		stu_array[1] = s2;
-// 		stu_array[2] = s3;
-
-// 		/*for (int i = 0; i < Array_student.size(); i++ ) {
-// 			System.out.println(Array_student.get(i).name);
-// 			System.out.println(Array_student.get(i).roll);
-// 			System.out.println(Array_student.get(i).contact);
-// 		}*/
-
-// 		for (int i = 0; i < stu_array.length ; i++ ) {
-// 			System.out.println(stu_array[i].name);
-// 			System.out.println(stu_array[i].roll);
-// 			System.out.println(stu_array[i].contact);
-// 			System.out.println();
-// 		}
-// 	}
-// }
-// output----->------>------->--------->
-// JOHN
-// 1
-// 70793-54482
-
-// AMAN
-// 2
-// 95077-56090
-
-// OMKAR
-// 1
-// 12345-67890
-
-/*------------------------------------------------------------------------------------------------------------------*/
