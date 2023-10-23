@@ -300,17 +300,19 @@ class Sort {
 // // 1 2 3 5 7
 
 /*--------------------------------------------------------*/
-//OOPS
-//smalltalk is the language which is purely based on the oops language
-//class is not a real world entity
-//class is the collection of object
-//it is just a template or blueprint or prototype
-//class doesn't occupy memory space
+//OOPS is a programming paradigm to do program
+//1.smalltalk is the language which is purely based on the oops language
+//2.class is not a real world entity
+//3.class is the collection of object
+//4.it is just a template or blueprint or prototype
+//5.class doesn't occupy memory space------> the size of the class can be determined be the sizes of the data members in it
 
+// 6 main pillars of the oops----> 1. classes       2. object & methods   3. inheritance       4. polymorphism          5.abstraction              6.encapsulation
 
 //Method-> A set of code which performs a particular task
 //1. code reuseblity
 //2. code optimisation
+// syntax : accessSpecifier returnType methodName ( List of paramerters)
 
 //OBJECT -> object is an instance of class (dog is an instance of animal)\
 // Object is the reference of the class
@@ -332,6 +334,8 @@ class Sort {
 
 
 //declaration => Animal (class) buggy;
+// here 'buggy' will count as the reference of the clss animal it is not the object of the class an instance / object is which is created or initiliszed using the 'new' keyword
+
 //instantiation => buggy = new;
 // This is the memory is allocated for an object.
 //The 'new ' keyword is used to create the object.
@@ -356,7 +360,7 @@ class Sort {
 // //3. by constructor
 
 
-// //creating the class and also creating the void method with the public
+// //CREATING THE CLASS AND ALSO CREATING THE VOID METHOD WITH THE PUBLIC
 // class a {
 //      public static void main(String[] args) throws IOException {
 //              //create an object
@@ -382,6 +386,7 @@ class Sort {
 // }
 
 
+/*------------------------------------------------------------------------------------------------------------------*/
 
 //CREATING OBJECT BY REFERENCE VARIBLE
 // import java.io.*;
@@ -402,7 +407,7 @@ class Sort {
 
 
 
-//CREATING THE CLASS BY THE METHOD
+//CREATING THE CLASS WITH THE METHOD
 /*import java.io.*;
 import java.util.*;
 
@@ -433,7 +438,7 @@ class Animal {
 // A block (similar to method)
 // having same name as that of class name
 //      constructor doesn't have any return type not even void
-//      public test -> is a constructor  but public void test -> is not a constructor
+//      public test {} -> is a constructor  but public void test{} -> is not a constructor
 
 
 //      the only modifieres applicable for constructor are public protected dafault and private
@@ -451,6 +456,7 @@ class Emp {
 	int emp_id;//default value initialised with zero
 	Emp() {
 		//this is no argument constructor created by the user
+		// where the default constructor is created by the jvm-----> Emp(){super();}
 		System.out.println("No arg constructor");
 	}
 	//creating the constructor with the only name of Emp
@@ -494,10 +500,8 @@ fucking */
 // in the class => Test() {  super();   }
 // compiler only created constructor when the user has not created it
 
-
 // 2.NO ARGUMENT CONSTRUCTOR => (USER DEFINED )
 // 3.PARAMETERISED CONSTRUCTOR
-
 
 
 /*------------------------------------------------------------------------------*/
@@ -505,7 +509,7 @@ fucking */
 //constructor gets never inherited in anyother classes
 //private methods are also not inherited by the child class
 //also there can be only one super class in so there cannot be multiple inheritance
-// the above line says that -----> A class can inherit only one super class
+// the above line says that -----> one or more than one class can inherit only one super class----------> there can't not be more than 1 super class
 
 
 //Inheritance is the property by which one object acquires all the properties and behaviours of a parent object.
@@ -804,7 +808,6 @@ class MyClass implements A, B {
 // maintanance problem. If we dont know how many arguments we will have to pass in the method, varargs is the better approach
 
 
-
 //In general varargs get least priority i.e if not other method matched, then
 //only vararg method will get the change , because int came in 1.0 version
 //varargs came in 1.5 version
@@ -812,6 +815,290 @@ class MyClass implements A, B {
 /*------------------------------------------------------------------------------------------------------------------*/
 
 //_______________METHOD OVERIDDING_________________
+// ---------------RUNTIME POLYMORPHISM--------------
+// 1. in the different classes
+// there must be a inheritance (is - A ) rlnship
+/*---------------------------------*/
+// case 2 and case 3
+// import java.io.*;
+// import java.util.*;
+// class test {
+// 	void show () {
+// 		System.out.println("1");
+// 	}
+// 	// there is error
+// 	public Object show2() {
+// 		System.out.println("Object show2");
+// 		return null;
+// 	}
+// }
+// class javaDeepak extends test {
+// 	void show() {
+// 		System.out.println("2");
+// 	}
+// 	// there is error
+// 	public String show2() {
+// 		System.out.println("String show2");
+// 		return null;
+// 	}
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		test t = new test();
+// 		javaDeepak x = new javaDeepak();
+// 		x.show(); //2
+// 		t.show(); //1
+// 		t.show2();
+// 		x.show2();
+// 	}
+// }
+// the access modifier of the child cls should be bigger than the access modifier of the super class
+/*---------------------------------*/
+// by using the method overriding we can change the implementation of the method of the super cls according to us
+// Do overriding method must have same return type (or subtype) ?
+// it is possible to have different return type for a overriding method inc idl cls, but child's return types should be subtype of parent's return type
+/*---------------------------------*/
+// abstract methods are always need to override
+// import java.io.*;
+// import java.util.*;
+// abstract class test {
+// 	abstract void display();
+// 	void show() throws RuntimeException {
+// 		System.out.println("1");
+// 	}
+// }
+// class javaDeepak extends test {
+// 	void display() {
+// 		System.out.println("22");
+// 	}
+// 	void show() {System.out.println("2");}
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		javaDeepak t = new javaDeepak();
+// 		t.show();//2
+// 		t.display();//22
+// 	}
+// }
+/*---------------------------------*/
+// case 4;
+// import java.io.*;
+// import java.util.*;
+// interface test {
+// 	void display();
+// }
+// class javaDeepak implements test {
+// 	public void display() {
+// 		System.out.println("22");
+// 	}
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		javaDeepak t = new javaDeepak();
+// 		t.display(); // 22
+// 	}
+// }
+/*---------------------------------*/
+/*---------------------------------*/
+//case 5 ------> INVOKING OVERRIDDEN METHOD FROM SUB CLASS
+//  we can call parent cls method overriding method using super keyword
+// case 6 ----->
+// 1. FINAL METHOD CAN'T BE OVERRIDDING
+// 2. STATIC METHOD CAN N'T BE OVERRIDDEN
+// 3. PRIVATE METHODS CAN NOT BE OVERRIDDEN----private methods can't be overridden as they are bonded during compile time. Therefore we can't evven override private methods in a subclss
+// case 7 ---->
+// overriding of the sunchronized / strictfp method can be overridded
+/*------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------*/
+// <--------in previous module we read about the code reuseablity ------>
+
+// SECURITY FOCUS MODULE :
+// ABSTRACTION || DATA HANDLING || ENCAPSULATION || TIGHTLY COUPLED CLAUSES
+
+/*---------------------------------*/
+// but we display the main services in the abstraction
+// abstraction : is detail hiding (implementation hiding)
+// it exposes the interface to the user and hiding the details of implementation
+
+// Encapsulation : is detail hiding (information hiding)
+// Encapsulation groups together data and methods that act upon the data
+/*---------------------------------*/
+
+// Abstraction 1. Abstract class (0-100%)  2.Interfaces (100%)
+
+// A method without body ( no implementation ) is known as abstract method
+// A method must always be declared in an abstract clss, or we can say that if a class has an astract method, it should be declared abstract as well.
+// If a regular class extends an abstract clas , then the class must have to implement all the abstract method of abstract parent class or it has to be declared abstract as well
+
+// method overriding in the abstraction
+// Abstract classes cnnot be instantiated , means we can't create an object of Abstract class
+// bcoz there is no body of the method so there is no use of the creating the obj
+// but we can create the reference of it
+
+/*import java.io.*;
+import java.util.*;
+
+abstract class Vehical {
+        int no_of_tyres ;
+        abstract void start();
+}
+class Car extends Vehical {
+        int no_of_tyres = 4;
+        void start () {
+                System.out.println("Starts with key");
+        }
+
+}
+class Scooter extends Vehical {
+        int no_of_tyres = 3;
+        void start() {
+                System.out.println("Stars with kick");
+        }
+        public static void main(String[] args) throws IOException {
+                // Vehical v = new Vehical();  // this cannot be initialised
+                Car c = new Car();
+                c.start();
+
+                Scooter s = new Scooter();
+                s.start();
+        }
+
+}*/
+/*--------------------------------------------------------------------*/
+// INTERFACES----------------->
+// all the method in the interface are the abstract methods
+// it is similar to the Abstract class but having all the methods to abstract type
+// without body method only --- we can't create the method with the body
+// INterface are the class blueprint  of the class . It specify what a class must do and not how.
+// for the inheritance use word 'IMPLEMENTS'
+
+// keypoints---->
+// 1. it is use to acheive abstraction ...
+// 2. it supports the multiple inheritance ..
+// 3. it can be use to loose coupling  it increases the flexblity of the system & makes it more maintanable and makes the entire framework more stable
+
+// SYNTAX :------------------------------>
+// import java.io.*;
+// import java.util.*;
+
+// interface Interface_name {
+// 	// all the methods are of default type [ public abstract ]
+// 	/* public abstract */void show();
+
+// 	// any field is default of the type [ public static final ]
+// 	int a = 10;
+
+// 	//  in the higher version of the java default concrete method can be created
+// to create the body of the method there must be declared as the default method
+// default void display() {
+// 		/* . . . . */
+// 	}
+// 	public static void print() {  // default it is public
+// 		/* . . . . */
+// 	}
+// 	// we can also create private method inside the interface
+// 	public static void main(String[] args) throws IOException {
+
+// 	}
+// }
+
+/*---------------------------*//*---------------------------------*/
+// we canot create the object of the interface
+
+// import java.io.*;
+// import java.util.*;
+// interface demo_1 {
+// 	public void show();
+// }
+// interface demo_2 {
+// 	void display();
+// }
+// class javaDeepak implements demo_1 , demo_2 {
+// 	// we can create the object of the javaDeepak cls
+// 	public void show() {
+// 		System.out.println("This is javaDeepak -> dmeo_1");
+// 	}
+// 	public void display() {
+// 		System.out.println("This is javaDeepak-1 -> demo_2");
+// 	}
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		javaDeepak t = new javaDeepak();
+// 		t.show();
+// 		t.display();
+// 	}
+// }
+// output :
+// This is Test -> dmeo_1
+// This is Test-1 -> demo_2
+/*------------*//*---------------------------------*//*---------------------------------*//*---------------------------------*/
+// another example to demostrate the mulitple inheritance in the java supported by the interface
+
+// import java.util.*;
+// import java.io.*;
+// // First interface
+// interface Printable {
+// 	void print();
+// }
+// // Second interface
+// interface Displayable {
+// 	void display();
+// }
+// //@override is ued to indicate that a method in a subcls is intended to override a method in its supercls
+// // Concrete class implementing both interfaces
+// class Printer implements Printable, Displayable {
+// 	// @Override
+// 	public void print() {
+// 		System.out.println("Printing...");
+// 	}
+
+// 	// @Override
+// 	public void display() {
+// 		System.out.println("Displaying...");
+// 	}
+// }
+// class javaDeepak {
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		Printer printer = new Printer();
+// 		printer.print();
+// 		printer.display();
+// 	}
+// }
+/*------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------*/
+// <<<<<<<<<<<<<<<______________________________________ENCAPSULATION_______________________________________________>>>>>>>>>>>..
+// Encap is java is mechanism of wrapping the data (varibles) and code acting on the data (methods) together as a single unit.
+//steps---->
+// 1. Declare the varibles of a clss as private.
+// 2. Provide public setter and getter methods to modify and view the varibles values
+
+// In encap , the varibles of a clss will be hidden from other classes, and can be accesed only through the methods of their current cls, this concept is known as data hiding
+
+
+// import java.io.*;
+// import java.util.*;
+
+// class Emp {
+// 	private int empId; // data hiding
+// 	// setter and getter methods
+// 	public void setEmpId (int empId) {
+// 		this.empId = empId;
+// 	}
+// 	public int getEmpId() {
+// 		return empId;
+// 	}
+// }
+// class javaDeepak {
+
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		Emp s = new Emp();
+// 		s.setEmpId(3);
+// 		System.out.println(s.getEmpId());
+// 	}
+// }
+/*---------------------------------*//*---------------------------------*//*---------------------------------*/
+//---------------USE OF THE THIS KEYWORD----------------
+/*------------------------------------------------------------------------------------------------------------------*/
 
 // Use of this keyword :->this keyword is a reference variable which referes the object
 // import java.io.*;
@@ -841,7 +1128,6 @@ class MyClass implements A, B {
 // 		// it gives the zero output if we use the instance and local varible same without using the "this" keyword
 // 	}
 // }
-/*---------------------------------*//*---------------------------------*//*---------------------------------*/
 // this keyword can be used to refer current class instance variable
 // this keywrod can be used to invoke current class method (implicitly)
 // this() can be used to invoke current class constructor
@@ -874,44 +1160,54 @@ class MyClass implements A, B {
 // hello
 /*---------------------------------*//*---------------------------------*/
 // 3.
-/*import java.io.*;
-import java.util.*;
+// import java.io.*;
+// import java.util.*;
 
-class javaDeepak {
-	javaDeepak (String b) {
-		System.out.println(b);
-	}
-	javaDeepak() {
-		System.out.println("No arg");
-	}
-	javaDeepak(int a ) {
-		this();// No arg constructor & // paremetrised construtor
-		System.out.println("parameterised constructor");
-	}
-	public static void main(String[] args) throws IOException {
-		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
-		javaDeepak t = new javaDeepak(10);
-		javaDeepak t2 = new javaDeepak("10");
-	}
-}*/
-
+// class javaDeepak {
+// 	javaDeepak (String b) {
+// 		System.out.println(b);
+// 	}
+// 	javaDeepak() { // 1st calling .........
+// 		System.out.println("No arg");
+// 	}
+// 	javaDeepak(int a ) {
+// 		this();// No arg constructor & // paremetrised construtor ...... from here the 1st calling will initiate
+// 		System.out.println("parameterised constructor");   // 2nd calling.......
+// 	}
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		javaDeepak t = new javaDeepak(10);
+// 		javaDeepak t2 = new javaDeepak("10");
+// 	}
+// }
+// No arg
+// parameteriesed constructor
+// 10
 /*---------------------------------*//*---------------------------------*/
-/*import java.io.*;
-import java.util.*;
+// case 3
+// import java.io.*;
+// import java.util.*;
 
-class javaDeepak {
-	javaDeepak () {
-		this(10);
-		System.out.println("No arg constructor");
-	}
-	javaDeepak(int a) {
-		System.out.println("parameterised constructor");
-	}
-	public static void main(String[] args) throws IOException {
-		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
-		javaDeepak t = new javaDeepak();
-	}
-}*/
+// class javaDeepak {
+// 	javaDeepak () {
+// 		this(10);
+// 		System.out.println("No arg constructor");
+// 	}
+// 	javaDeepak(int a) {
+// 		this("Aman");
+// 		System.out.println("parameterised constructor");
+// 	}
+// 	javaDeepak(String b) {
+// 		System.out.println(b);
+// 	}
+// 	public static void main(String[] args) throws IOException {
+// 		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+// 		javaDeepak t = new javaDeepak();
+// 	}
+// }
+// Aman
+// parameterised constructor
+// no arg constructor
 /*---------------------------------*//*---------------------------------*/
 // 4.
 // import java.io.*;
@@ -1065,153 +1361,6 @@ class Main {
 
 
 /*-------------------------------------------------------------------*/
-// SECURITY FOCUS MODULE :
-// ABSTRACTION || DATA HANDLING || ENCAPSULATION || TIGHTLY COUPLED CLAUSES
-
-
-// abstraction : is detail hiding (implementation hiding)
-// it exposes the interface to the user and hiding the details of implementation
-
-// Encapsulation : is detail hiding (information hiding)
-// Encapsulation gruops together data and methods that act upon the data
-
-
-// Abstraction 1. Abstract class (0-100%)  2.Interfaces (100%)
-
-// A method without body ( no implementation ) is known as abstract method
-// A method must always be declared in an abstract clss, or we can say that if a class has an bastract method, it should be declared abstract as well.
-// If a regular class extends an abstract clas , then the class must have to implement all the abstract method of abstract parent class or it has to be declared abstract as well
-
-// method overriding in the abstraction
-// Abstract classes cnnot be instantiated , means we can't create an object of Abstract class
-// bcoz there is no body of the method so there is no use of the creating the obj
-
-/*import java.io.*;
-import java.util.*;
-
-abstract class Vehical {
-        int no_of_tyres ;
-        abstract void start();
-}
-class Car extends Vehical {
-        int no_of_tyres = 4;
-        void start () {
-                System.out.println("Starts with key");
-        }
-
-}
-class Scooter extends Vehical {
-        int no_of_tyres = 3;
-        void start() {
-                System.out.println("Stars with kick");
-        }
-        public static void main(String[] args) throws IOException {
-                // Vehical v = new Vehical();  // this cannot be initialised
-                Car c = new Car();
-                c.start();
-
-                Scooter s = new Scooter();
-                s.start();
-        }
-
-}*/
-/*--------------------------------------------------------------------*/
-// INTERFACES----------------->
-// it is similar to the Abstract class but having all the methods to abstract type
-// without body method only --- we can't create the method with the body
-// INterface are the class blueprint  of the class . It specify what a class must do and not how.
-// for the inheritance use word 'IMPLEMENTS'
-
-// 1. it is use to acheive abstraction ...
-// 2. it supports the multiple inheritance ..
-// 3. it can be use to loose coupling  it increases the flexblity of the system & makes it more maintanable and makes the entire framework more stable
-
-// SYNTAX :------------------------------>
-// import java.io.*;
-// import java.util.*;
-
-// interface Interface_name {
-// 	// all the methods are of default type [ public abstract ]
-// 	/* public abstract */void show();
-
-// 	// any field is dafalut of the type [ public static final ]
-// 	int a = 10;
-
-// 	//  in the higher version of the java default concrete method can be created
-// default void display() {
-// 		/* . . . . */
-// 	}
-// 	public static void print() {  // default it is public
-// 		/* . . . . */
-// 	}
-// 	// we can also create private method inside the interface
-// 	public static void main(String[] args) throws IOException {
-
-// 	}
-// }
-
-/*---------------------------*//*---------------------------------*/
-// we canot create the object of the interface
-
-// import java.io.*;
-// import java.util.*;
-// interface demo_1 {
-// 	public void show();
-// }
-// interface demo_2 {
-// 	void display();
-// }
-// class Test implements demo_1 , demo_2 {
-// 	// we can create the object of the test cls
-// 	public void show() {
-// 		System.out.println("This is Test -> dmeo_1");
-// 	}
-// 	public void display() {
-// 		System.out.println("This is Test-1 -> demo_2");
-// 	}
-// 	public static void main(String[] args) throws IOException {
-// 		Test t = new Test();
-// 		t.show();
-// 		t.display();
-// 	}
-// }
-// output :
-// This is Test -> dmeo_1
-// This is Test-1 -> demo_2
-/*------------*//*---------------------------------*//*---------------------------------*//*---------------------------------*/
-// another example to demostrate the mulitple inheritance in the java supported by the interface
-// First interface
-
-/*import java.util.*;
-import java.io.*;
-interface Printable {
-	void print();
-}
-// Second interface
-interface Displayable {
-	void display();
-}
-//@override is ued to indicate that a method in a subcls is intended to override a method in its supercls
-// Concrete class implementing both interfaces
-class Printer implements Printable, Displayable {
-	@Override
-	public void print() {
-		System.out.println("Printing...");
-	}
-
-	@Override
-	public void display() {
-		System.out.println("Displaying...");
-	}
-}
-class javaDeepak {
-	public static void main(String[] args) throws IOException {
-		System.setOut(new PrintStream(new FileOutputStream("output.txt")));
-		Printer printer = new Printer();
-		printer.print();
-		printer.display();
-	}
-}*/
 /*-------------------------------------------------------------------------*//*---------------------------------*/
 // USE OF FINAL KEYWORD
 
@@ -1219,8 +1368,8 @@ class javaDeepak {
 // 2. METHOD => if we create any final method, we cannot override it
 // 3. Class => if we create any final class , we can't extend it or inherit it
 
-// 1
 
+// 1
 // import java.io.*;
 // import java.util.*;
 
@@ -1529,7 +1678,7 @@ class Emp {
 // 	}
 // }
 
-// Whenever there is exception , the method in which exception occurs will creata an object and that object will store
+// Whenever there is exception , the method in which exception occurs will create an object and that object will store
 // three things :
 // 1. exception name       2. description     3. stack trace
 
@@ -1796,11 +1945,25 @@ catch (ExceptionClassName ref.var.name)
 /*------------------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------------------*/
 // DIFFERENCE BETWEEN THROW AND THROWS---->
-// Throw -> main method doesn't involve
-// throws -> keywod is used to declare the exception is. it indicates the call method
-// that given exception can occur so we have to handle it either using try catch block or again declare it by using throws keyword
+// Throw ->  1. main method doesn't involve
+//           2. throw keyword is mainly used for runtime exception or unchecked exception
+//           3, In case of throw keywod we can throw only single exception
+//           4. throw keyword is used within the method
+//           5. throw keyword is followed by new instance
+//           6. We cannot write any statement after throw keyword and thus it can be used to break the statement
+
+// throws -> 1. keywod is used to declare the exception is. it indicates the call method
+// 	        that given exception can occur so we have to handle it either using try catch block or again declare it by using throws keyword
+//           2. but throws is mainly used for compile time exception
+//              or checked exception
+//           3. but in case of throws keyword we can declare multiple exception i.e void real
+//           4. throws keyword is used with method signature
+//           5. object but throws keyword is followed by class
+//           6. but there is no such rule for the throws keyword
 /*---------------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------*/
+
 // <=========== STRING IN JAVA ========>
 
 // String is a non-primitive data type  -> all non-primitive data types simply called objects which are created by instantiating a class.
@@ -1828,7 +1991,7 @@ catch (ExceptionClassName ref.var.name)
 
 // 4, Why string class is final & difference between final and immutablity
 
-//1. final class-----> can't be iherited those properties cannot be inherited
+//1. final class-----> can't be inherited those properties cannot be inherited
 //2. final method----> if the same name method is created in other different class -----> method overriding  & also classes must have the Is-A relationship
 // if the final method is created then the method cannot be overides
 // 3. if the varible is created with the final then it's value cannot be changed
@@ -1836,7 +1999,7 @@ catch (ExceptionClassName ref.var.name)
 
 
 // Method of String ------------>
-// 1.(==) is used for refernce comparison (address comparison) it means it cheks if both objects points ot the same memory location or not
+// 1.(==) is used for refernce comparison (address comparison) it means it cheks if both objects points to the same memory location or not
 // 2. .equals() method is used for content comparison (in String class) it means it used to check object value
 
 
@@ -1878,7 +2041,7 @@ class Test {
 // this keyword can be used to pass as an argument of current class
 // this keyword can be used to reference current class
 
-// Ifwe talk for the object class then equals and == both are same  ----> reference comparison and address comparison
+// If we talk for the object class then equals and == both are same  ----> reference comparison and address comparison
 
 /*import java.io.*;
 import java.util.*;
@@ -2200,7 +2363,7 @@ class Test {
 
 // String ==> immutable
 // StringBuffer=> mutable (objects), synchronized(methods)
-// Syn in java gurantess taht no two threads can execute a sun method which requires the smae lock simultaneously or concurrently. And this, syn increases waiting time of thread and effects performance of the system .
+// Syn in java gurantess taht no two threads can execute a sun method which requires the same lock simultaneously or concurrently. And this, syn increases waiting time of thread and effects performance of the system .
 // To overcome the pbrlm of slow performance of StringBuilder methods, and creates all methods of StringBuilder as non-synchronized which increases the methods performances.
 
 // StringBuilder -> mutable(object), non-syn methods]
